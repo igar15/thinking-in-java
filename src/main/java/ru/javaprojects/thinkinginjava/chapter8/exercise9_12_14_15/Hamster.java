@@ -1,4 +1,4 @@
-package ru.javaprojects.thinkinginjava.chapter8.exercise9_12_14;
+package ru.javaprojects.thinkinginjava.chapter8.exercise9_12_14_15;
 
 public class Hamster extends Rodent {
     private RodentTool rodentTool;

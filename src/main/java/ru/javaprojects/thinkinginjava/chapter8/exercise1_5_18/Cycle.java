@@ -1,4 +1,4 @@
-package ru.javaprojects.thinkinginjava.chapter8.exercise1_5;
+package ru.javaprojects.thinkinginjava.chapter8.exercise1_5_18;
 
 public abstract class Cycle {
     public void ride() {
