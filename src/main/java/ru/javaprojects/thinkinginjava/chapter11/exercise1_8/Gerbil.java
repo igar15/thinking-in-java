@@ -1,6 +1,7 @@
-package ru.javaprojects.thinkinginjava.chapter11.exercise1;
+package ru.javaprojects.thinkinginjava.chapter11.exercise1_8;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Gerbil {
@@ -21,8 +22,10 @@ public class Gerbil {
         gerbils.add(new Gerbil(2));
         gerbils.add(new Gerbil(3));
         gerbils.add(new Gerbil(4));
-        for (int i = 0; i < gerbils.size(); i++) {
-            gerbils.get(i).hop();
+        Iterator<Gerbil> iterator = gerbils.iterator();
+        while (iterator.hasNext()) {
+            Gerbil gerbil = iterator.next();
+            gerbil.hop();
         }
     }
 }
