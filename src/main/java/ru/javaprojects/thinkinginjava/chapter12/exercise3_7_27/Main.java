@@ -1,4 +1,4 @@
-package ru.javaprojects.thinkinginjava.chapter12.exercise3_7;
+package ru.javaprojects.thinkinginjava.chapter12.exercise3_7_27;
 
 public class Main {
     public static void main(String[] args) {
@@ -6,7 +6,7 @@ public class Main {
         try {
             System.out.println(strings[2]);
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 }
