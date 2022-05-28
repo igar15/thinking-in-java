@@ -1,4 +1,4 @@
-package ru.javaprojects.thinkinginjava.chapter14.exercise1_2;
+package ru.javaprojects.thinkinginjava.chapter14.exercise1_2_19;
 
 public class FancyToy extends Toy implements Waterproof {
     public FancyToy() {
