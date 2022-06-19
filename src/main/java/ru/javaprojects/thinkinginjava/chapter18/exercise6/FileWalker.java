@@ -4,7 +4,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class FileWalker {
     private File directory;
@@ -13,27 +15,33 @@ public class FileWalker {
         directory = new File(dirName);
     }
 
-    public List<String> getFileNames(String regex, Date lastModified) {
+    public List<File> getFiles(String regex, Predicate<File> predicate) {
         Pattern pattern = Pattern.compile(regex);
-        return findFilesInDir(pattern, lastModified, directory);
-
+        return findFilesInDir(pattern, predicate, directory);
     }
 
-    private List<String> findFilesInDir(Pattern pattern, Date lastModified, File directory) {
+    public List<String> getFileNames(String regex, Predicate<File> predicate) {
+        List<File> files = getFiles(regex, predicate);
+        return files.stream()
+                .map(File::getName)
+                .collect(Collectors.toList());
+    }
+
+    private List<File> findFilesInDir(Pattern pattern, Predicate<File> predicate, File directory) {
         if (!directory.isDirectory()) {
             throw new RuntimeException();
         }
-        List<String> fileNames = new ArrayList<>();
-        File[] files = directory.listFiles();
-        for (File file : files) {
+        List<File> files = new ArrayList<>();
+        File[] dirFiles = directory.listFiles();
+        for (File file : dirFiles) {
             if (file.isDirectory()) {
-                fileNames.addAll(findFilesInDir(pattern, lastModified, file));
+                files.addAll(findFilesInDir(pattern, predicate, file));
             } else {
-                if (pattern.matcher(file.getName()).matches() && file.lastModified() > lastModified.getTime()) {
-                    fileNames.add(file.getName());
+                if (pattern.matcher(file.getName()).matches() && predicate.test(file)) {
+                    files.add(file);
                 }
             }
         }
-        return fileNames;
+        return files;
     }
 }

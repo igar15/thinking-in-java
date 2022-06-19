@@ -1,0 +1,3 @@
+Make water=10
+Make air=5
+Clean space=3
