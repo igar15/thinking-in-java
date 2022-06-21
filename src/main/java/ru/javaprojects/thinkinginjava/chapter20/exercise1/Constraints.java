@@ -7,7 +7,8 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface SqlDouble {
-    String name();
-    Constraints constraints() default @Constraints(nonNull = false);
+public @interface Constraints {
+    boolean primaryKey() default false;
+    boolean nonNull() default true;
+    boolean unique() default false;
 }
